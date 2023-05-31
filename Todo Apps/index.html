@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book-shelf apps</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Project akhir</h1>
+    </header>
+
+    <div class="wrapper">
+        <div class="container bg-white shadow custom-container" id="add-todo">
+            <h2 class="container-header text-center">Masukkan buku baru</h2>
+            <form class="form" action="#" id="inputBook">
+                <div class="form-group form-title">
+                    <label for="inputBookTitle">Judul</label>
+                    <input id="inputBookTitle" type="text" required>
+                </div>
+                <div class="form-group form-title">
+                    <label for="inputBookAuthor">Penulis</label>
+                    <input id="inputBookAuthor" type="text" required>
+                </div>
+                <div class="form-group form-title">
+                    <label for="inputBookYear">Tahun</label>
+                    <input id="inputBookYear" type="number" required>
+                </div>
+                <div class="form-group form-title input-inline">
+                    <label for="inputBookIsComplete">Selesai dibaca</label>
+                    <input id="inputBookIsComplete" type="checkbox">
+                </div>
+                <input type="submit" value="Masukkan buku ke rak" name="Submit" class="btn-submit">
+            </form>
+        </div>
+        <div class="container">
+            <h2 class="container-header">Belum selesai dibaca</h2>
+
+            <div class="list-item" id="todos">
+            </div>
+        </div>
+        <div class="container">
+            <h2 class="container-header">Selesai dibaca</h2>
+            <div class="list-item" id="completed-todos">
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/script.js"></script>
+</body>
+
+</html>
