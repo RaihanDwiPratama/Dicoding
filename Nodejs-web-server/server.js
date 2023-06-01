@@ -11,10 +11,12 @@ const requestListener = (request, response) => {
     if(url === '/') {
         // jika metode get dipakai, maka akan menampilkan ini adalah homepage.
         if(method === 'GET') {
+            response.statusCode = 200;
             response.end("<h1>Ini adalah homepage</h1>");
         }
         // jika metode yang dipakai selain get, maka akan menampilkan output dibawah ini.
         else {
+            response.statusCode = 400;
             response.end(`<h1>Halaman tidak dapat diakses dengan ${method} request</h1>`)
         }
     } 
@@ -22,6 +24,7 @@ const requestListener = (request, response) => {
     else if(url === '/about') {
         // jika metode get dipakai, maka akan menampilkan ini adalah halaman about
         if(method === 'GET') {
+            response.statusCode = 200
             response.end("<h1>Halo! Ini adalah halaman about</h1>");
         }
         // jika metode post dipakai, maka akan menampilkan data name pada body
@@ -39,9 +42,11 @@ const requestListener = (request, response) => {
             });
         }
         else {
+            response.statusCode = 400;
             response.end(`<h1>Halaman tidak dapat diakses dengan ${method} request</h1>`)
         }
     } else {
+        response.statusCode = 404;
         response.end('<h1>Halaman tidak ditemukan</h1>');
     }
 };
