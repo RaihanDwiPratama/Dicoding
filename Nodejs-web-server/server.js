@@ -5,24 +5,44 @@ const requestListener = (request, response) => {
 
     response.statusCode = 200;
 
-    const {method} = request;
+    const {method, url} = request;
 
-    if(method === 'GET') {
-        response.end('<h1>Hello HTTP Server!<h1>');
-    }
-    
-    if(method === 'POST') {
-        let body = [];
+    // url untuk homepage
+    if(url === '/') {
+        // jika metode get dipakai, maka akan menampilkan ini adalah homepage.
+        if(method === 'GET') {
+            response.end("<h1>Ini adalah homepage</h1>");
+        }
+        // jika metode yang dipakai selain get, maka akan menampilkan output dibawah ini.
+        else {
+            response.end(`<h1>Halaman tidak dapat diakses dengan ${method} request</h1>`)
+        }
+    } 
+    // url untuk about
+    else if(url === '/about') {
+        // jika metode get dipakai, maka akan menampilkan ini adalah halaman about
+        if(method === 'GET') {
+            response.end("<h1>Halo! Ini adalah halaman about</h1>");
+        }
+        // jika metode post dipakai, maka akan menampilkan data name pada body
+        else if(method === 'POST') {
+            let body = [];
 
-        request.on('data', (chunk) => {
-            body.push(chunk);
-        });
+            request.on('data', (chunk) => {
+                body.push(chunk);
+            });
 
-        request.on('end', () => {
-            body = Buffer.concat(body).toString();
-            const {name} = JSON.parse(body);
-            response.end(`<h1>Hai ${name}!<h1>`);
-        });
+            request.on('end', () => {
+                body = Buffer.concat(body).toString();
+                const {name} = JSON.parse(body);
+                response.end(`<h1>Halo! ${name}! Ini adalah halaman about</h1>`);
+            });
+        }
+        else {
+            response.end(`<h1>Halaman tidak dapat diakses dengan ${method} request</h1>`)
+        }
+    } else {
+        response.end('<h1>Halaman tidak ditemukan</h1>');
     }
 };
 
